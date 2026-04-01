@@ -191,6 +191,10 @@ if(modal && triggers && closeBtn) {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       modal.classList.add('active');
+      const mobileNav = document.getElementById('nav');
+      if (mobileNav && mobileNav.classList.contains('menu-open')) {
+        mobileNav.classList.remove('menu-open');
+      }
       lenis.stop();
     });
   });
