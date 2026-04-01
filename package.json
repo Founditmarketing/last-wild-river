@@ -1,0 +1,13 @@
+{
+  "name": "last-wild-river-resort",
+  "version": "1.0.0",
+  "description": "Last Wild River Resort Single Page Site",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

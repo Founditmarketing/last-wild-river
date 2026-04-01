@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Last Wild River Resort & Venue | Oklahoma's Hidden Luxury Escape</title>
+<meta name="description" content="164 acres of pristine wilderness on Oklahoma's last wild river. Luxury lodge, world-class event venue, and nature's finest adventures — near Broken Bow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Libre+Franklin:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --color-bg: #0C0B09;
+  --color-bg-alt: #141310;
+  --color-cream: #F5F0E8;
+  --color-cream-soft: #E8E0D2;
+  --color-gold: #C9A84C;
+  --color-gold-light: #D4B96A;
+  --color-gold-dark: #A68A3A;
+  --color-forest: #2C3E2D;
+  --color-forest-light: #3D5440;
+  --color-river: #4A6D7C;
+  --color-river-light: #5E8899;
+  --color-warm: #8B7355;
+  --color-text: #F5F0E8;
+  --color-text-muted: #A09882;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Libre Franklin', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ====== PRELOADER ====== */
+.preloader {
+  position: fixed; inset: 0;
+  background: var(--color-bg);
+  z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 300;
+  color: var(--color-gold);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: preloaderPulse 1.5s ease-in-out infinite;
+}
+@keyframes preloaderPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ====== NAV ====== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.5rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.5s ease;
+}
+.nav.scrolled {
+  background: rgba(12, 11, 9, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 1rem 3rem;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+}
+.nav-logo {
+  display: block;
+  transition: opacity 0.3s;
+}
+.nav-logo img {
+  height: 48px; /* Adjustable later based on actual logo */
+  width: auto;
+  object-fit: contain;
+}
+.nav-logo:hover { opacity: 0.8; }
+.nav-links { display: flex; gap: 2.5rem; align-items: center; }
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-cream-soft);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--color-gold);
+  transition: width 0.4s ease;
+}
+.nav-links a:hover { color: var(--color-gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  font-family: var(--font-body) !important;
+  font-size: 0.65rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase;
+  color: var(--color-bg) !important;
+  background: var(--color-gold);
+  padding: 0.7rem 1.8rem;
+  border: none;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.nav-cta:hover { background: var(--color-gold-light); transform: translateY(-1px); }
+.nav-cta::after { display: none !important; }
+
+/* Mobile menu */
+.nav-toggle {
+  display: none;
+  flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 5px;
+}
+.nav-toggle span {
+  width: 24px; height: 1.5px;
+  background: var(--color-cream);
+  transition: all 0.3s ease;
+}
+.mobile-menu {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(12, 11, 9, 0.98);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2rem;
+  opacity: 0; visibility: hidden;
+  transition: all 0.5s ease;
+}
+.mobile-menu.open { opacity: 1; visibility: visible; }
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 2rem; font-weight: 300;
+  color: var(--color-cream); text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+.mobile-menu a:hover { color: var(--color-gold); }
+.mobile-close {
+  position: absolute; top: 2rem; right: 2rem;
+  background: none; border: none; cursor: pointer;
+  color: var(--color-cream); font-size: 2rem;
+  font-weight: 200;
+}
+
+/* ====== HERO ====== */
+.hero {
+  position: relative;
+  height: 100vh; min-height: 700px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('./images/image_1.jpg') center/cover no-repeat;
+  transform: scale(1.1);
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom {
+  0% { transform: scale(1.1); }
+  100% { transform: scale(1.0); }
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 11, 9, 0.3) 0%,
+    rgba(12, 11, 9, 0.15) 40%,
+    rgba(12, 11, 9, 0.5) 80%,
+    rgba(12, 11, 9, 0.95) 100%
+  );
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  padding: 0.6rem 2rem;
+  margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp 1s 0.5s ease forwards;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-cream);
+  margin-bottom: 1.5rem;
+  opacity: 0; animation: fadeUp 1s 0.7s ease forwards;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--color-gold);
+}
+.hero-sub {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
+  letter-spacing: 0.03em;
+  opacity: 0; animation: fadeUp 1s 0.9s ease forwards;
+}
+.hero-actions {
+  display: flex; gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 1s 1.1s ease forwards;
+}
+.btn-primary {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-bg);
+  background: var(--color-gold);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.btn-primary:hover { background: var(--color-gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3); }
+.btn-outline {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  border: 1px solid rgba(245, 240, 232, 0.3);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.btn-outline:hover { border-color: var(--color-gold); color: var(--color-gold); }
+.hero-scroll {
+  position: absolute; bottom: 3rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  opacity: 0; animation: fadeUp 1s 1.5s ease forwards;
+}
+.hero-scroll span {
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--color-gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== SECTION COMMONS ====== */
+.section { padding: 8rem 2rem; }
+.section-lg { padding: 10rem 2rem; }
+.container { max-width: 1200px; margin: 0 auto; }
+.container-wide { max-width: 1400px; margin: 0 auto; }
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--color-cream);
+  margin-bottom: 1.5rem;
+}
+.section-title em { font-style: italic; color: var(--color-gold); }
+.section-text {
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--color-text-muted);
+  max-width: 600px;
+}
+.gold-divider {
+  width: 60px; height: 1px;
+  background: var(--color-gold);
+  margin: 2rem 0;
+}
+
+/* ====== INTRO ====== */
+.intro { background: var(--color-bg); }
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.intro-img-wrap {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+.intro-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.intro-img-wrap:hover img { transform: scale(1.05); }
+.intro-img-accent {
+  position: absolute; bottom: -20px; right: -20px;
+  width: 200px; height: 200px;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  z-index: -1;
+}
+.intro-stats {
+  display: flex; gap: 3rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(245, 240, 232, 0.08);
+}
+.stat-item { text-align: center; }
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--color-gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ====== ACCOMMODATIONS ====== */
+.accommodations { background: var(--color-bg-alt); }
+.accom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+}
+.accom-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  cursor: pointer;
+  group: true;
+}
+.accom-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.accom-card:hover img { transform: scale(1.08); }
+.accom-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(12, 11, 9, 0.9) 0%, rgba(12, 11, 9, 0.1) 50%, rgba(12, 11, 9, 0.2) 100%);
+  transition: background 0.5s ease;
+}
+.accom-card:hover .accom-card-overlay {
+  background: linear-gradient(to top, rgba(12, 11, 9, 0.95) 0%, rgba(12, 11, 9, 0.3) 50%, rgba(12, 11, 9, 0.1) 100%);
+}
+.accom-card-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 2rem;
+  transform: translateY(20px);
+  transition: transform 0.5s ease;
+}
+.accom-card:hover .accom-card-content { transform: translateY(0); }
+.accom-card-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+.accom-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--color-cream);
+  margin-bottom: 0.75rem;
+}
+.accom-card p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.1s;
+}
+.accom-card:hover p { opacity: 1; }
+.accom-features {
+  display: flex; gap: 1.5rem;
+  margin-top: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.2s;
+}
+.accom-card:hover .accom-features { opacity: 1; }
+.accom-feature {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+}
+
+/* ====== EXPERIENCE STRIP ====== */
+.experience-strip {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+.experience-strip-inner {
+  display: flex;
+  animation: marquee 40s linear infinite;
+}
+.experience-strip-item {
+  flex-shrink: 0;
+  padding: 2.5rem 4rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-gold);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 3rem;
+}
+.experience-strip-dot {
+  width: 4px; height: 4px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ====== ACTIVITIES ====== */
+.activities { background: var(--color-bg); }
+.activities-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+}
+.activities-header .section-text { max-width: 450px; }
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+.activity-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.activity-card.tall { grid-row: span 2; }
+.activity-card.wide { grid-column: span 2; }
+.activity-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  min-height: 250px;
+  transition: transform 0.8s ease;
+}
+.activity-card.tall img { min-height: 520px; }
+.activity-card:hover img { transform: scale(1.08); }
+.activity-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(12, 11, 9, 0.8) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.5s ease;
+}
+.activity-card:hover .activity-card-overlay { opacity: 1; }
+.activity-card-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.5rem;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.activity-card:hover .activity-card-content { transform: translateY(0); opacity: 1; }
+.activity-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--color-cream);
+}
+.activity-card span {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* ====== VENUE ====== */
+.venue {
+  position: relative;
+  padding: 10rem 2rem;
+  overflow: hidden;
+}
+.venue-bg {
+  position: absolute; inset: 0;
+  background: url('./images/image_2.png') center/cover no-repeat;
+}
+.venue-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(12, 11, 9, 0.92) 0%,
+    rgba(12, 11, 9, 0.7) 50%,
+    rgba(12, 11, 9, 0.5) 100%
+  );
+}
+.venue-content {
+  position: relative; z-index: 2;
+  max-width: 600px;
+}
+.venue-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.venue-feature {
+  padding: 1.5rem;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  transition: border-color 0.4s ease;
+}
+.venue-feature:hover { border-color: rgba(201, 168, 76, 0.4); }
+.venue-feature h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--color-cream);
+  margin-bottom: 0.5rem;
+}
+.venue-feature p {
+  font-size: 0.75rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* ====== TESTIMONIAL ====== */
+.testimonial {
+  background: var(--color-bg);
+  text-align: center;
+}
+.testimonial-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-cream);
+  max-width: 850px;
+  margin: 0 auto 2rem;
+}
+.testimonial-quote::before {
+  content: '\201C';
+  display: block;
+  font-size: 5rem;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.testimonial-author {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+.testimonial-stars {
+  display: flex; justify-content: center; gap: 0.3rem;
+  margin-bottom: 2rem;
+}
+.testimonial-stars span {
+  color: var(--color-gold);
+  font-size: 1rem;
+}
+
+/* ====== TRAILS MAP ====== */
+.trails {
+  background: var(--color-bg-alt);
+  overflow: hidden;
+}
+.trails-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.trail-list { list-style: none; margin-top: 2rem; }
+.trail-item {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(245, 240, 232, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.trail-item:hover { padding-left: 0.5rem; border-color: rgba(201, 168, 76, 0.3); }
+.trail-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-cream);
+}
+.trail-detail {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.trails-img {
+  width: 100%;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  transition: transform 0.5s ease;
+}
+.trails-img:hover { transform: scale(1.02); }
+
+/* ====== AMENITIES ====== */
+.amenities {
+  background: var(--color-bg);
+  text-align: center;
+}
+.amenity-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+.amenity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 120px;
+}
+.amenity-icon {
+  width: 56px; height: 56px;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.4s ease;
+}
+.amenity-item:hover .amenity-icon {
+  border-color: var(--color-gold);
+  background: rgba(201, 168, 76, 0.1);
+}
+.amenity-item span {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ====== GALLERY STRIP ====== */
+.gallery-strip {
+  display: flex;
+  overflow: hidden;
+}
+.gallery-strip-inner {
+  display: flex;
+  animation: galleryMarquee 60s linear infinite;
+}
+.gallery-strip img {
+  height: 350px;
+  width: auto;
+  object-fit: cover;
+  flex-shrink: 0;
+  filter: brightness(0.8);
+  transition: filter 0.5s ease;
+}
+.gallery-strip img:hover { filter: brightness(1); }
+@keyframes galleryMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ====== CTA ====== */
+.cta-section {
+  position: relative;
+  padding: 10rem 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  background: url('./images/image_3.jpg') center/cover no-repeat;
+}
+.cta-overlay {
+  position: absolute; inset: 0;
+  background: rgba(12, 11, 9, 0.75);
+}
+.cta-content {
+  position: relative; z-index: 2;
+}
+.cta-content .section-title { margin-bottom: 1rem; }
+.cta-content .section-text {
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+/* ====== FOOTER ====== */
+.footer {
+  background: var(--color-bg);
+  border-top: 1px solid rgba(245, 240, 232, 0.06);
+  padding: 5rem 2rem 2rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+}
+.footer-brand-text {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  max-width: 350px;
+}
+.footer-contact-line {
+  font-size: 0.85rem;
+  color: var(--color-cream);
+  margin-top: 1.5rem;
+}
+.footer-contact-line a {
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.footer-contact-line a:hover { opacity: 0.7; }
+.footer-heading {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  margin-bottom: 1.5rem;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 0.75rem; }
+.footer-links a {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--color-gold); }
+.footer-socials { display: flex; gap: 1rem; margin-top: 1rem; }
+.footer-social {
+  width: 40px; height: 40px;
+  border: 1px solid rgba(245, 240, 232, 0.1);
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  transition: all 0.3s;
+}
+.footer-social:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(245, 240, 232, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+.footer-credit {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ====== SCROLL ANIMATIONS ====== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .mobile-menu { display: flex; }
+  .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .intro-img-wrap { max-width: 500px; }
+  .accom-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .activities-grid { grid-template-columns: repeat(2, 1fr); }
+  .activity-card.tall { grid-row: span 1; }
+  .activity-card.tall img { min-height: 250px; }
+  .activity-card.wide { grid-column: span 2; }
+  .venue-features { grid-template-columns: 1fr; }
+  .trails-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .activities-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+}
+
+@media (max-width: 640px) {
+  .nav { padding: 1.2rem 1.5rem; }
+  .section { padding: 5rem 1.5rem; }
+  .section-lg { padding: 6rem 1.5rem; }
+  .hero { min-height: 600px; }
+  .intro-stats { gap: 1.5rem; flex-wrap: wrap; }
+  .activities-grid { grid-template-columns: 1fr; }
+  .activity-card.wide { grid-column: span 1; }
+  .gallery-strip img { height: 220px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .venue { padding: 6rem 1.5rem; }
+  .cta-section { padding: 6rem 1.5rem; }
+  .amenity-row { gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+  <div class="preloader-text">Last Wild River</div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <img src="images/logo.png" alt="Last Wild River Resort">
+  </a>
+  <div class="nav-links">
+    <a href="#about">The Resort</a>
+    <a href="#accommodations">Stay</a>
+    <a href="#activities">Adventures</a>
+    <a href="#venue">Events</a>
+    <a href="#trails">Explore</a>
+    <a href="#contact" class="nav-cta">Book Your Escape</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">&times;</button>
+  <a href="#about" onclick="closeMobile()">The Resort</a>
+  <a href="#accommodations" onclick="closeMobile()">Stay</a>
+  <a href="#activities" onclick="closeMobile()">Adventures</a>
+  <a href="#venue" onclick="closeMobile()">Events</a>
+  <a href="#trails" onclick="closeMobile()">Explore</a>
+  <a href="#contact" onclick="closeMobile()">Book Your Escape</a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Oklahoma's Last Wild River &mdash; 164 Private Acres</div>
+    <h1>Where the <em>River</em> Runs Wild</h1>
+    <p class="hero-sub">A secluded luxury resort nestled on the banks of Glover River, surrounded by the Ouachita Mountains. Total privacy. Untamed beauty. Unforgettable moments.</p>
+    <div class="hero-actions">
+      <a href="#accommodations" class="btn-primary">Explore the Lodge</a>
+      <a href="#venue" class="btn-outline">Plan Your Event</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Discover</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- Experience Strip -->
+<div class="experience-strip" style="background: var(--color-bg-alt); border-top: 1px solid rgba(201,168,76,0.1); border-bottom: 1px solid rgba(201,168,76,0.1);">
+  <div class="experience-strip-inner">
+    <div class="experience-strip-item">Kayaking <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Hiking Trails <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">River Fishing <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Mountain Views <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Wedding Venue <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Hot Tub <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Private Chef <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Outdoor Theater <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Kayaking <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Hiking Trails <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">River Fishing <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Mountain Views <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Wedding Venue <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Hot Tub <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Private Chef <span class="experience-strip-dot"></span></div>
+    <div class="experience-strip-item">Outdoor Theater <span class="experience-strip-dot"></span></div>
+  </div>
+</div>
+
+<!-- Intro -->
+<section class="section-lg intro" id="about">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-img-wrap reveal">
+        <img src="./images/image_4.jpg" alt="On River Time Lodge at Last Wild River Resort">
+        <div class="intro-img-accent"></div>
+      </div>
+      <div>
+        <div class="section-label reveal">A Place Apart</div>
+        <h2 class="section-title reveal reveal-delay-1">164 Acres of <em>Pristine</em> Wilderness</h2>
+        <div class="gold-divider reveal reveal-delay-1"></div>
+        <p class="section-text reveal reveal-delay-2">
+          Last Wild River Resort offers an experience unlike any other in Oklahoma. Glover River — the last free-flowing, undammed river in the state — winds through our 164-acre private property, creating a sanctuary where the only sounds you'll hear are those of nature.
+        </p>
+        <p class="section-text reveal reveal-delay-2" style="margin-top: 1.2rem;">
+          Surrounded by the Ouachita Mountains and located just 16 miles from Broken Bow and 45 minutes from Beavers Bend State Park, this is where seclusion meets luxury. Hike mountain trails, fish for bass and perch, kayak the river, or simply let the world fall away.
+        </p>
+        <div class="intro-stats reveal reveal-delay-3">
+          <div class="stat-item">
+            <div class="stat-number">164</div>
+            <div class="stat-label">Private Acres</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Hiking Trails</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">18</div>
+            <div class="stat-label">Guest Capacity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Accommodations -->
+<section class="section-lg accommodations" id="accommodations">
+  <div class="container-wide">
+    <div style="text-align: center; margin-bottom: 1rem;">
+      <div class="section-label reveal">Where You'll Stay</div>
+      <h2 class="section-title reveal reveal-delay-1">Luxury Lodging, <em>Wild</em> Setting</h2>
+      <p class="section-text reveal reveal-delay-2" style="margin: 0 auto;">Rustic elegance meets modern comfort in our handcrafted accommodations, each designed to bring the beauty of the outdoors in.</p>
+    </div>
+    <div class="accom-grid">
+      <div class="accom-card reveal">
+        <img src="./images/image_5.jpg" alt="On River Time Lodge">
+        <div class="accom-card-overlay"></div>
+        <div class="accom-card-content">
+          <div class="accom-card-label">Premier Lodge</div>
+          <h3>On River Time Lodge</h3>
+          <p>A warm lodge theme bringing the outdoors in. Open concept living with gourmet kitchen, riverfront hot tub, fireplace, sauna, and jacuzzi. Sleeps 18 across multiple king suites and bunk rooms.</p>
+          <div class="accom-features">
+            <span class="accom-feature">Sleeps 18</span>
+            <span class="accom-feature">River Views</span>
+            <span class="accom-feature">Hot Tub</span>
+          </div>
+        </div>
+      </div>
+      <div class="accom-card reveal reveal-delay-1">
+        <img src="./images/image_6.jpg" alt="Buck's Bunk House">
+        <div class="accom-card-overlay"></div>
+        <div class="accom-card-content">
+          <div class="accom-card-label">Additional Quarters</div>
+          <h3>Buck's Bunk House</h3>
+          <p>Western-themed sleeping quarters providing a cozy atmosphere to rest between your Last Wild River adventures. Perfect overflow accommodations for larger groups.</p>
+          <div class="accom-features">
+            <span class="accom-feature">Western Theme</span>
+            <span class="accom-feature">Group Friendly</span>
+          </div>
+        </div>
+      </div>
+      <div class="accom-card reveal reveal-delay-2">
+        <img src="./images/image_7.jpg" alt="Wild River Saloon">
+        <div class="accom-card-overlay"></div>
+        <div class="accom-card-content">
+          <div class="accom-card-label">Gathering Space</div>
+          <h3>Wild River Saloon</h3>
+          <p>The heart of resort socializing. A beautifully designed space for gathering, celebrating, and creating memories with your group under the Oklahoma sky.</p>
+          <div class="accom-features">
+            <span class="accom-feature">Events</span>
+            <span class="accom-feature">Celebrations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Activities -->
+<section class="section-lg activities" id="activities">
+  <div class="container-wide">
+    <div class="activities-header">
+      <div>
+        <div class="section-label reveal">Adventure Built In</div>
+        <h2 class="section-title reveal reveal-delay-1">Nature's <em>Resort</em></h2>
+      </div>
+      <p class="section-text reveal reveal-delay-2">Experience hiking, fishing, kayaking, and canoeing without ever leaving the property. When you arrive, you won't want to leave this little piece of heaven on earth.</p>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card tall reveal">
+        <img src="./images/image_8.jpg" alt="Kayaking on Glover River">
+        <div class="activity-card-overlay"></div>
+        <div class="activity-card-content">
+          <span>On-Site</span>
+          <h4>Kayaking & Canoeing</h4>
+        </div>
+      </div>
+      <div class="activity-card wide reveal reveal-delay-1">
+        <img src="./images/image_9.jpg" alt="Glover River">
+        <div class="activity-card-overlay"></div>
+        <div class="activity-card-content">
+          <span>Glover River</span>
+          <h4>River Swimming & Floating</h4>
+        </div>
+      </div>
+      <div class="activity-card reveal reveal-delay-2">
+        <img src="./images/image_10.png" alt="Fishing">
+        <div class="activity-card-overlay"></div>
+        <div class="activity-card-content">
+          <span>The Fishin' Hole</span>
+          <h4>Bass & Perch Fishing</h4>
+        </div>
+      </div>
+      <div class="activity-card wide reveal reveal-delay-1">
+        <img src="./images/image_11.png" alt="Hiking Trails">
+        <div class="activity-card-overlay"></div>
+        <div class="activity-card-content">
+          <span>Five Named Trails</span>
+          <h4>Mountain Hiking</h4>
+        </div>
+      </div>
+      <div class="activity-card reveal reveal-delay-2">
+        <img src="./images/image_12.png" alt="Volleyball">
+        <div class="activity-card-overlay"></div>
+        <div class="activity-card-content">
+          <span>Nature's Yard</span>
+          <h4>Games & Recreation</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Venue -->
+<section class="venue" id="venue">
+  <div class="venue-bg"></div>
+  <div class="venue-overlay"></div>
+  <div class="container">
+    <div class="venue-content">
+      <div class="section-label reveal">Destination Events</div>
+      <h2 class="section-title reveal reveal-delay-1">Your Dream <em>Venue</em></h2>
+      <div class="gold-divider reveal reveal-delay-1"></div>
+      <p class="section-text reveal reveal-delay-2">Book your dream destination wedding, family reunion, corporate retreat, or conference. This hidden gem has everything you need to host an unforgettable event, with the river as your backdrop and the mountains as your cathedral.</p>
+      <div class="venue-features reveal reveal-delay-3">
+        <div class="venue-feature">
+          <h4>Weddings</h4>
+          <p>Fairytale forest ceremonies with Sunset Theater as your outdoor chapel</p>
+        </div>
+        <div class="venue-feature">
+          <h4>Reunions</h4>
+          <p>164 acres of shared adventure for the whole family</p>
+        </div>
+        <div class="venue-feature">
+          <h4>Retreats</h4>
+          <p>Disconnect from the world, reconnect with your team</p>
+        </div>
+        <div class="venue-feature">
+          <h4>Celebrations</h4>
+          <p>Birthdays, anniversaries, and milestones worth remembering</p>
+        </div>
+      </div>
+      <a href="#contact" class="btn-primary reveal" style="margin-top: 2.5rem; display: inline-block;">Inquire About Events</a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial -->
+<section class="section-lg testimonial">
+  <div class="container">
+    <div class="testimonial-stars reveal">
+      <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+    </div>
+    <p class="testimonial-quote reveal reveal-delay-1">This is an incredible property. We had 16 of us and enjoyed everything — fishing, hiking, kayaking, and the fire pit. I would stay here again in a heartbeat. The people who own this place are amazing too. You can book with confidence.</p>
+    <div class="testimonial-author reveal reveal-delay-2">Lenzy C. &mdash; Thanksgiving 2022</div>
+  </div>
+</section>
+
+<!-- Trails & Map -->
+<section class="section-lg trails" id="trails">
+  <div class="container">
+    <div class="trails-grid">
+      <div>
+        <div class="section-label reveal">Explore 164 Acres</div>
+        <h2 class="section-title reveal reveal-delay-1">Named Trails & <em>Peaks</em></h2>
+        <div class="gold-divider reveal reveal-delay-1"></div>
+        <p class="section-text reveal reveal-delay-2">Hike right from the lodge lawn across 164 acres through our named trails. Each path leads past the flowing river and across Burks Hollow Creek to mountaintop destinations.</p>
+        <ul class="trail-list reveal reveal-delay-3">
+          <li class="trail-item">
+            <span class="trail-name">Turkey Trot Trail</span>
+            <span class="trail-detail">Moderate</span>
+          </li>
+          <li class="trail-item">
+            <span class="trail-name">Whitetail Trail</span>
+            <span class="trail-detail">Moderate</span>
+          </li>
+          <li class="trail-item">
+            <span class="trail-name">Diamondback Trail</span>
+            <span class="trail-detail">Vigorous</span>
+          </li>
+          <li class="trail-item">
+            <span class="trail-name">Eagles' Ridge</span>
+            <span class="trail-detail">Summit</span>
+          </li>
+          <li class="trail-item">
+            <span class="trail-name">Pines Peak</span>
+            <span class="trail-detail">Summit</span>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <img class="trails-img" src="./images/image_13.jpg" alt="Last Wild River Resort Trail Map">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Amenities -->
+<section class="section-lg amenities">
+  <div class="container">
+    <div class="section-label reveal">The Details</div>
+    <h2 class="section-title reveal reveal-delay-1">Lodge <em>Amenities</em></h2>
+    <div class="amenity-row reveal reveal-delay-2">
+      <div class="amenity-item">
+        <div class="amenity-icon">&#x2668;</div>
+        <span>Hot Tub</span>
+      </div>
+      <div class="amenity-item">
+        <div class="amenity-icon">&#x1F525;</div>
+        <span>Fireplaces</span>
+      </div>
+      <div class="amenity-item">
+        <div class="amenity-icon">&#x1F4F6;</div>
+        <span>WiFi</span>
+      </div>
+      <div class="amenity-item">
+        <div class="amenity-icon">&#x1F373;</div>
+        <span>Full Kitchen</span>
+      </div>
+      <div class="amenity-item">
+        <div class="amenity-icon">&#x1F6C1;</div>
+        <span>Sauna</span>
+      </div>
+      <div class="amenity-item">
+        <div class="amenity-icon">&#x1F6F6;</div>
+        <span>Kayaks</span>
+      </div>
+      <div class="amenity-item">
+        <div class="amenity-icon">&#x1F3A3;</div>
+        <span>Fishing</span>
+      </div>
+      <div class="amenity-item">
+        <div class="amenity-icon">&#x1F3D4;</div>
+        <span>Mtn Views</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Strip -->
+<div class="gallery-strip">
+  <div class="gallery-strip-inner">
+    <img src="./images/image_14.jpg" alt="Bridge">
+    <img src="./images/image_15.jpg" alt="Fireplace">
+    <img src="./images/image_16.jpg" alt="Fishing">
+    <img src="./images/image_17.jpg" alt="Walking Path">
+    <img src="./images/image_18.jpg" alt="Aerial">
+    <img src="./images/image_19.jpg" alt="Trees">
+    <img src="./images/image_20.jpg" alt="Bridge Trail">
+    <img src="./images/image_21.jpg" alt="Outdoor Living">
+    <!-- Duplicate for seamless loop -->
+    <img src="./images/image_14.jpg" alt="Bridge">
+    <img src="./images/image_15.jpg" alt="Fireplace">
+    <img src="./images/image_16.jpg" alt="Fishing">
+    <img src="./images/image_17.jpg" alt="Walking Path">
+    <img src="./images/image_18.jpg" alt="Aerial">
+    <img src="./images/image_19.jpg" alt="Trees">
+    <img src="./images/image_20.jpg" alt="Bridge Trail">
+    <img src="./images/image_21.jpg" alt="Outdoor Living">
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-content">
+    <div class="section-label reveal">Begin Your Story</div>
+    <h2 class="section-title reveal reveal-delay-1">Ready to <em>Escape?</em></h2>
+    <p class="section-text reveal reveal-delay-2">Whether you're planning a family retreat, a dream wedding, or simply need to disappear into nature — we're ready to welcome you to the last wild place in Oklahoma.</p>
+    <div class="reveal reveal-delay-3" style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.5rem;">
+      <a href="tel:5802124746" class="btn-primary">Call 580.212.4746</a>
+      <a href="mailto:bearmountainlodging@gmail.com" class="btn-outline">Send a Message</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Last Wild River Resort</div>
+        <p class="footer-brand-text">164 acres of pristine wilderness on Oklahoma's last wild river. Located near Broken Bow and Beavers Bend State Park in the Ouachita Mountains, Wright City, McCurtain County, OK.</p>
+        <div class="footer-contact-line">
+          <a href="tel:5802124746">580.212.4746</a>
+        </div>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/lastwildriverresort/" class="footer-social" aria-label="Instagram" target="_blank">IG</a>
+          <a href="https://www.tiktok.com/@last.wild.river.resort" class="footer-social" aria-label="TikTok" target="_blank">TT</a>
+          <a href="#" class="footer-social" aria-label="Facebook" target="_blank">FB</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Stay</div>
+        <ul class="footer-links">
+          <li><a href="#">On River Time Lodge</a></li>
+          <li><a href="#">Buck's Bunk House</a></li>
+          <li><a href="#">Wild River Saloon</a></li>
+          <li><a href="#">Availability & Booking</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Experience</div>
+        <ul class="footer-links">
+          <li><a href="#">On-Site Activities</a></li>
+          <li><a href="#">Nearby Adventures</a></li>
+          <li><a href="#">Event Venue</a></li>
+          <li><a href="#">Concierge Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">Latest Weddings</a></li>
+          <li><a href="#">Media</a></li>
+          <li><a href="mailto:bearmountainlodging@gmail.com">Email Us</a></li>
+          <li><a href="tel:5802124746">580.212.4746</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Last Wild River Resort & Venue. All rights reserved.</div>
+      <div class="footer-credit">Wright City, McCurtain County, Oklahoma</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Preloader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('preloader').classList.add('hidden');
+  }, 800);
+});
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// Mobile menu
+const toggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+
+toggle.addEventListener('click', () => mobileMenu.classList.add('open'));
+mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+function closeMobile() { mobileMenu.classList.remove('open'); }
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
