@@ -9,5 +9,17 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Founditmarketing/last-wild-river.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Founditmarketing/last-wild-river/issues"
+  },
+  "homepage": "https://github.com/Founditmarketing/last-wild-river#readme",
+  "dependencies": {
+    "sharp": "^0.34.5"
+  }
 }

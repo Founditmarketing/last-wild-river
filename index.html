@@ -3,611 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Last Wild River Resort & Venue | Oklahoma's Hidden Luxury Escape</title>
-<meta name="description" content="164 acres of pristine wilderness on Oklahoma's last wild river. Luxury lodge, world-class event venue, and nature's finest adventures — near Broken Bow.">
+<title>Last Wild River Resort & Venue | Oklahoma's Luxury Escape</title>
+<meta name="description" content="164 acres of pristine wilderness on Oklahoma's last wild river. Luxury lodge, world-class event venue, and nature's finest adventures.">
+
+<!-- Preload critical fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Libre+Franklin:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-<style>
-/* ====== RESET & VARIABLES ====== */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-:root {
-  /* Richer, deeper color palette */
-  --color-bg: #070908; /* Deep dark forest night */
-  --color-bg-alt: #0a0d0a; 
-  --color-cream: #F9F6F0;
-  --color-cream-soft: #E5DFC5;
-  --color-gold: #D4AF37;
-  --color-gold-light: #E8CC73;
-  --color-gold-dark: #997A15;
-  --color-forest: #1A261B;
-  --color-text: #F9F6F0;
-  --color-text-muted: #A3A8A0;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Libre Franklin', sans-serif;
-  --glass-bg: rgba(7, 9, 8, 0.45);
-  --glass-border: rgba(212, 175, 55, 0.15);
-}
+<link rel="stylesheet" href="css/style.css">
 
-/* Fluid Typography */
-html { 
-  font-size: clamp(14px, 1vw + 0.5rem, 18px);
-  scroll-behavior: auto; /* Disabled for Lenis */
-}
-
-body {
-  font-family: var(--font-body);
-  background: var(--color-bg);
-  color: var(--color-text);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  cursor: none; /* For custom cursor */
-}
-
-::selection { background: var(--color-gold); color: var(--color-bg); }
-
-/* ====== CUSTOM CURSOR ====== */
-.cursor-dot,
-.cursor-outline {
-  position: fixed;
-  top: 0; left: 0;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10001;
-}
-.cursor-dot {
-  width: 6px; height: 6px;
-  background: var(--color-gold);
-}
-.cursor-outline {
-  width: 40px; height: 40px;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  background: rgba(212, 175, 55, 0.05);
-  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
-}
-.cursor-outline.hovering {
-  width: 60px; height: 60px;
-  background: rgba(212, 175, 55, 0.15);
-  border-color: var(--color-gold);
-}
-
-/* ====== PRELOADER ====== */
-.preloader {
-  position: fixed; inset: 0;
-  background: var(--color-bg);
-  z-index: 10000;
-  display: flex; align-items: center; justify-content: center;
-  transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1), visibility 1s;
-}
-.preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.preloader-text {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  font-weight: 300;
-  color: var(--color-gold);
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-}
-
-/* ====== NAV ====== */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 1000;
-  padding: 1.5rem 4rem;
-  display: flex; align-items: center; justify-content: space-between;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  border-bottom: 1px solid transparent;
-}
-.nav.scrolled {
-  padding: 1rem 4rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--glass-border);
-}
-.nav-logo {
-  display: block;
-  transition: opacity 0.4s ease;
-  will-change: opacity;
-}
-.nav-logo img {
-  height: 48px;
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-}
-.nav-logo:hover { opacity: 0.7; }
-
-/* Interactive Nav Links */
-.nav-links { display: flex; gap: 3rem; align-items: center; }
-.nav-link {
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--color-cream-soft);
-  text-decoration: none;
-  position: relative;
-  padding: 0.5rem 0;
-  overflow: hidden;
-}
-.nav-link span {
-  display: inline-block;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.nav-link::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 100%; left: 0;
-  color: var(--color-gold);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.nav-link:hover span { transform: translateY(-100%); }
-.nav-link:hover::before { transform: translateY(-100%); }
-
-.nav-cta {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--color-bg);
-  background: var(--color-gold);
-  padding: 1rem 2.5rem;
-  border: none;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  border-radius: 2px;
-  transition: all 0.5s ease;
-}
-.nav-cta::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-.nav-cta:hover::before { transform: translateX(100%); }
-.nav-cta:hover { background: var(--color-cream); box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2); }
-
-/* Mobile Menu */
-.nav-toggle { display: none; background: none; border: none; padding: 10px; z-index: 1001; }
-.nav-toggle span { display: block; width: 30px; height: 1px; background: var(--color-cream); margin-bottom: 6px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-.nav-toggle span:last-child { margin-bottom: 0; }
-
-@media (max-width: 1024px) {
-  .nav-links { display: none; }
-  .nav-toggle { display: block; }
-  .nav { padding: 1.5rem 2rem; }
-  .nav.scrolled { padding: 1rem 2rem; }
-}
-
-/* ====== SECTION COMMONS ====== */
-.section { padding: 10rem 4rem; position: relative; }
-.container { max-width: 1300px; margin: 0 auto; }
-.container-wide { max-width: 1500px; margin: 0 auto; }
-
-.section-label {
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  margin-bottom: 1.5rem;
-  display: block;
-}
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 300;
-  line-height: 1.1;
-  color: var(--color-cream);
-  margin-bottom: 2rem;
-}
-.section-title em { font-style: italic; color: var(--color-gold); }
-.section-text {
-  font-size: 1.1rem;
-  font-weight: 300;
-  line-height: 1.8;
-  color: var(--color-text-muted);
-  max-width: 650px;
-}
-.gold-divider {
-  width: 0; height: 1px;
-  background: var(--color-gold);
-  margin: 2.5rem 0;
-  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* ====== HERO ====== */
-.hero {
-  position: relative;
-  height: 100svh; min-height: 700px;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
-.hero-bg-container {
-  position: absolute; inset: 0;
-  width: 100%; height: 120%; /* For parallax */
-  top: -10%;
-}
-.hero-bg {
-  width: 100%; height: 100%;
-  background: url('./images/image_1.jpg') center/cover no-repeat;
-  filter: brightness(0.65) contrast(1.1);
-}
-.hero-overlay {
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at center, rgba(7,9,8,0.2) 0%, rgba(7,9,8,0.8) 100%);
-}
-.hero-content {
-  position: relative; z-index: 2;
-  text-align: center;
-  max-width: 1000px;
-  padding: 0 2rem;
-  margin-top: 5vh;
-}
-.hero-badge {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  padding: 0.8rem 2.5rem;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  margin-bottom: 2.5rem;
-  backdrop-filter: blur(5px);
-}
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 10vw, 8.5rem);
-  font-weight: 300;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  color: var(--color-cream);
-  margin-bottom: 2rem;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.hero h1 .line { overflow: hidden; display: block; }
-.hero h1 .word { display: inline-block; transform: translateY(110%); }
-
-.hero-sub {
-  font-size: 1.1rem;
-  font-weight: 300;
-  line-height: 1.8;
-  color: var(--color-cream-soft);
-  max-width: 600px;
-  margin: 0 auto 3rem;
-  opacity: 0;
-}
-.hero-scroll {
-  position: absolute; bottom: 3rem; left: 50%;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 1rem;
-  opacity: 0;
-}
-.scroll-line {
-  width: 1px; height: 60px;
-  background: rgba(255,255,255,0.2);
-  position: relative;
-  overflow: hidden;
-}
-.scroll-line::before {
-  content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 100%;
-  background: var(--color-gold);
-  animation: scrollDown 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
-}
-@keyframes scrollDown {
-  0% { top: -100%; }
-  50% { top: 0; }
-  100% { top: 100%; }
-}
-
-/* ====== INTRO ====== */
-.intro { background: var(--color-bg); }
-.intro-grid {
-  display: grid;
-  grid-template-columns: 5fr 6fr;
-  gap: 8rem;
-  align-items: center;
-}
-.intro-img-wrap {
-  position: relative;
-  aspect-ratio: 3/4;
-  overflow: hidden;
-  border-radius: 2px;
-}
-.intro-img-wrap img {
-  width: 100%; height: 120%; top: -10%; position: absolute;
-  object-fit: cover;
-  filter: sepia(0.2) contrast(1.1);
-}
-.intro-stats {
-  display: flex; gap: 4rem;
-  margin-top: 4rem;
-  padding-top: 3rem;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-.stat-number {
-  font-family: var(--font-display);
-  font-size: 3.5rem; color: var(--color-gold); line-height: 1;
-}
-.stat-label {
-  font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-text-muted); margin-top: 1rem;
-}
-
-/* ====== ACCOMMODATIONS (Hover Expanding Cards) ====== */
-.accommodations { background: var(--color-bg-alt); }
-.accom-grid {
-  display: flex;
-  gap: 2rem;
-  margin-top: 5rem;
-  height: 600px;
-}
-.accom-card {
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
-  transition: flex 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: none; /* Let custom cursor handle hovering */
-}
-/* When one is hovered, it expands */
-.accom-grid:hover .accom-card { flex: 0.5; }
-.accom-grid .accom-card:hover { flex: 2; }
-
-.accom-card img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s;
-  filter: brightness(0.5) contrast(1.1);
-}
-.accom-card:hover img { transform: scale(1.05); filter: brightness(0.8) contrast(1.1); }
-
-.accom-card-content {
-  position: absolute; bottom: 0; left: 0; width: 100%;
-  padding: 3rem;
-  background: linear-gradient(to top, rgba(7,9,8,0.95) 0%, rgba(7,9,8,0.5) 60%, transparent 100%);
-  transform: translateY(30%);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.accom-card:hover .accom-card-content { transform: translateY(0); }
-.accom-card h3 {
-  font-family: var(--font-display); font-size: 2.2rem; color: var(--color-cream);
-  margin-bottom: 1rem;
-  white-space: nowrap;
-}
-.accom-card p {
-  color: var(--color-cream-soft); font-size: 0.95rem; line-height: 1.6;
-  opacity: 0; transition: opacity 0.5s ease 0.2s;
-}
-.accom-card:hover p { opacity: 1; }
-.accom-features {
-  display: flex; gap: 1.5rem; margin-top: 1.5rem; opacity: 0; transition: opacity 0.5s ease 0.3s;
-}
-.accom-feature { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-gold); }
-.accom-card:hover .accom-features { opacity: 1; }
-
-/* ====== BENTO GRID (Activities) ====== */
-.activities { background: var(--color-bg); padding-bottom: 12rem; }
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 350px;
-  gap: 1.5rem;
-  margin-top: 5rem;
-}
-.bento-item {
-  position: relative; overflow: hidden; border-radius: 4px;
-  background: var(--color-forest);
-}
-.bento-item.tall { grid-row: span 2; }
-.bento-item.wide { grid-column: span 2; }
-.bento-item.large { grid-column: span 2; grid-row: span 2; }
-
-.bento-item img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s;
-  filter: brightness(0.6) saturate(0.8);
-}
-.bento-item:hover img {
-  transform: scale(1.08); filter: brightness(0.8) saturate(1.1);
-}
-.bento-content {
-  position: absolute; inset: 0; padding: 2.5rem;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  background: linear-gradient(135deg, rgba(7,9,8,0) 40%, rgba(7,9,8,0.9) 100%);
-}
-.bento-label {
-  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-gold); margin-bottom: 0.8rem;
-  transform: translateY(10px); opacity: 0; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.bento-item h4 {
-  font-family: var(--font-display); font-size: 2.2rem; font-weight: 300; color: var(--color-cream);
-  transform: translateY(15px); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
-}
-.bento-item:hover .bento-label { transform: translateY(0); opacity: 1; }
-.bento-item:hover h4 { transform: translateY(0); color: var(--color-gold-light); }
-
-/* ====== EXPERIENCE STRIP ====== */
-.experience-strip {
-  padding: 3rem 0; overflow: hidden;
-  background: var(--color-bg-alt);
-  border-top: 1px solid rgba(212,175,55,0.1); border-bottom: 1px solid rgba(212,175,55,0.1);
-}
-.experience-strip-inner { display: flex; animation: marquee 35s linear infinite; }
-.experience-strip-item {
-  flex-shrink: 0; padding: 0 4rem;
-  font-family: var(--font-display); font-size: 2rem; font-weight: 300; font-style: italic; color: var(--color-gold); letter-spacing: 0.05em; display: flex; align-items: center; gap: 4rem;
-}
-.experience-strip-dot { width: 6px; height: 6px; background: var(--color-gold); border-radius: 50%; opacity: 0.5; }
-@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-/* ====== VENUE ====== */
-.venue { position: relative; padding: 12rem 4rem; overflow: hidden; }
-.venue-bg {
-  position: absolute; inset: 0; width: 100%; height: 120%; top: -10%;
-  background: url('./images/image_2.png') center/cover no-repeat;
-  filter: brightness(0.4);
-}
-.venue-content { position: relative; z-index: 2; max-width: 700px; }
-.venue-features { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4rem; }
-.venue-feature {
-  padding: 2.5rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  transition: all 0.4s ease;
-}
-.venue-feature:hover { border-color: rgba(212, 175, 55, 0.5); transform: translateY(-5px); }
-.venue-feature h4 { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-gold-light); margin-bottom: 1rem; }
-.venue-feature p { font-size: 0.9rem; line-height: 1.6; color: var(--color-cream-soft); }
-
-/* ====== GALLERY STRIP ====== */
-.gallery-strip { display: flex; overflow: hidden; height: 450px; }
-.gallery-strip-inner { display: flex; animation: galleryMarquee 80s linear infinite; }
-.gallery-strip img {
-  height: 100%; width: auto; object-fit: cover; flex-shrink: 0;
-  filter: grayscale(80%) contrast(1.2) brightness(0.5);
-  transition: filter 0.8s ease;
-  padding: 0 0.5rem;
-}
-.gallery-strip img:hover { filter: grayscale(0%) contrast(1.1) brightness(1); }
-@keyframes galleryMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-/* ====== CTA ====== */
-.cta-section {
-  position: relative; padding: 12rem 4rem; text-align: center; overflow: hidden;
-}
-.cta-bg { position: absolute; inset: 0; background: url('./images/image_3.jpg') center/cover no-repeat; filter: brightness(0.3); }
-.cta-content { position: relative; z-index: 2; }
-.cta-actions { display: flex; justify-content: center; gap: 2rem; margin-top: 3rem; }
-
-/* ====== FOOTER ====== */
-.footer {
-  background: var(--color-bg);
-  padding: 8rem 4rem 3rem;
-  border-top: 1px solid var(--glass-border);
-}
-.footer-grid { display: grid; grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr; gap: 4rem; margin-bottom: 6rem; }
-.footer-logo img { width: 140px; margin-bottom: 1.5rem; filter: saturate(0) brightness(1.5); }
-.footer-text { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.9; max-width: 400px; }
-.footer-heading { font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-gold); margin-bottom: 2rem; }
-.footer-links { list-style: none; }
-.footer-links li { margin-bottom: 1rem; }
-.footer-links a { color: var(--color-cream-soft); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
-.footer-links a:hover { color: var(--color-gold); }
-.footer-bottom { padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; color: var(--color-text-muted); font-size: 0.8rem; letter-spacing: 0.05em; }
-
-/* ====== RESPONSIVE overrides ====== */
-@media (max-width: 1024px) {
-  .intro-grid { grid-template-columns: 1fr; }
-  .accom-grid { flex-direction: column; height: auto; }
-  .accom-card { height: 400px; flex: auto !important; }
-  .accom-card-content { transform: translateY(0); }
-  .accom-card p, .accom-features { opacity: 1; }
-  .bento-grid { grid-template-columns: repeat(2, 1fr); }
-  .venue-features { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 640px) {
-  .section { padding: 6rem 1.5rem; }
-  .bento-grid { grid-template-columns: 1fr; }
-  .bento-item { grid-column: span 1 !important; grid-row: span 1 !important; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-  .nav { padding: 1.2rem 1.5rem; }
-}
-</style>
+<!-- Defer local JS libraries to prevent render blocking -->
+<script src="js/gsap.min.js" defer></script>
+<script src="js/ScrollTrigger.min.js" defer></script>
+<script src="js/lenis.min.js" defer></script>
+<script src="js/app.js" defer></script>
 </head>
 <body>
 
-<!-- Custom Cursor -->
 <div class="cursor-dot"></div>
 <div class="cursor-outline"></div>
 
-<!-- Preloader -->
 <div class="preloader" id="preloader">
   <div class="preloader-text">Last Wild River</div>
 </div>
 
-<!-- Navigation -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo hover-target">
-    <img src="images/logo.png" alt="Last Wild River Resort">
+    <img src="images/logo.png" alt="Last Wild River Resort" width="150" height="48">
   </a>
   <div class="nav-links">
     <a href="#about" class="nav-link hover-target" data-text="The Resort"><span>The Resort</span></a>
     <a href="#accommodations" class="nav-link hover-target" data-text="Stay"><span>Stay</span></a>
     <a href="#activities" class="nav-link hover-target" data-text="Experiences"><span>Experiences</span></a>
     <a href="#venue" class="nav-link hover-target" data-text="Events"><span>Events</span></a>
-    <a href="#contact" class="nav-cta hover-target">Book Your Escape</a>
+    <a href="#contact" class="nav-cta trigger-booking hover-target">Check Availability</a>
   </div>
   <button class="nav-toggle hover-target" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- Hero -->
+<!-- Hero Video Section (replaces static image) -->
 <section class="hero">
   <div class="hero-bg-container" data-speed="0.8">
-    <div class="hero-bg"></div>
+    <video class="hero-video" autoPlay loop muted playsInline poster="images/image_1.webp">
+      <!-- Fallback static if no video provided -->
+    </video>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge">Oklahoma's Last Wild River &mdash; 164 Private Acres</div>
     <h1 class="hero-title">Where the <em>River</em> Runs Wild</h1>
-    <p class="hero-sub">A secluded luxury resort nestled on the banks of Glover River, surrounded by the Ouachita Mountains. Total privacy. Untamed beauty. Unforgettable moments.</p>
+    <h2 class="hero-sub">A secluded luxury resort nestled on the banks of Glover River, surrounded by the Ouachita Mountains. Total privacy. Untamed beauty.</h2>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
     </div>
   </div>
 </section>
 
-<!-- Experience Strip -->
-<div class="experience-strip">
-  <div class="experience-strip-inner">
-    <div class="experience-strip-item">Kayaking <span class="experience-strip-dot"></span></div>
-    <div class="experience-strip-item">Hiking Trails <span class="experience-strip-dot"></span></div>
-    <div class="experience-strip-item">River Fishing <span class="experience-strip-dot"></span></div>
-    <div class="experience-strip-item">Mountain Views <span class="experience-strip-dot"></span></div>
-    <div class="experience-strip-item">Wedding Venue <span class="experience-strip-dot"></span></div>
-    <div class="experience-strip-item">Hot Tub <span class="experience-strip-dot"></span></div>
-    <div class="experience-strip-item">Kayaking <span class="experience-strip-dot"></span></div>
-    <div class="experience-strip-item">Hiking Trails <span class="experience-strip-dot"></span></div>
-    <div class="experience-strip-item">River Fishing <span class="experience-strip-dot"></span></div>
-    <div class="experience-strip-item">Mountain Views <span class="experience-strip-dot"></span></div>
-    <div class="experience-strip-item">Wedding Venue <span class="experience-strip-dot"></span></div>
-  </div>
-</div>
-
-<!-- Intro -->
+<!-- Into / About -->
 <section class="section intro" id="about">
   <div class="container container-wide">
     <div class="intro-grid">
       <div class="intro-img-wrap hover-target" data-speed="0.9">
-        <img src="./images/image_4.jpg" alt="On River Time Lodge">
+        <!-- Explicit width/height -->
+        <img src="images/image_4.webp" alt="On River Time Lodge" width="800" height="1066">
       </div>
       <div class="intro-text">
         <span class="section-label">A Place Apart</span>
         <h2 class="section-title">164 Acres of <em>Pristine</em> Wilderness</h2>
         <div class="gold-divider"></div>
         <p class="section-text">
-          Last Wild River Resort offers an experience unlike any other in Oklahoma. Glover River — the last free-flowing, undammed river in the state — winds through our 164-acre private property, creating a sanctuary where the only sounds you'll hear are those of nature.
-        </p>
-        <p class="section-text" style="margin-top: 1.5rem;">
-          Surrounded by the Ouachita Mountains, this is where seclusion meets luxury. Hike mountain trails, fish for bass, kayak the river, or simply let the world fall away in luxury.
+          Last Wild River Resort offers an experience unlike any other in Oklahoma. Glover River — the last free-flowing, undammed river in the state — winds through our 164-acre private property.
+          Surrounded by the Ouachita Mountains, this is where seclusion meets luxury.
         </p>
         <div class="intro-stats">
-          <div><div class="stat-number">164</div><div class="stat-label">Private Acres</div></div>
-          <div><div class="stat-number">5</div><div class="stat-label">Hiking Trails</div></div>
-          <div><div class="stat-number">18</div><div class="stat-label">Guest Capacity</div></div>
+          <div class="stat-item"><div class="stat-number">164</div><div class="stat-label">Acres</div></div>
+          <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">Trails</div></div>
+          <div class="stat-item"><div class="stat-number">18</div><div class="stat-label">Guests</div></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Amenities Grid (Restored!) -->
+<section class="section amenities">
+  <div class="container-wide">
+    <span class="section-label">Premium Comforts</span>
+    <h2 class="section-title">Wilderness, <em>Elevated</em></h2>
+    <div class="amenity-row">
+      <div class="amenity-item hover-target"><div class="amenity-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div><span>Global Wifi</span></div>
+      <div class="amenity-item hover-target"><div class="amenity-icon"><svg viewBox="0 0 24 24"><path d="M11.9 4c-1.8 0-3.2 1.4-3.2 3.2 0 3.2-3.3 2.7-3.3 6.8 0 3.6 2.9 6.5 6.5 6.5s6.5-2.9 6.5-6.5c0-4.1-3.3-3.6-3.3-6.8 0-1.8-1.4-3.2-3.2-3.2zM12 18c-1.1 0-2-.9-2-2 0-3.3 2-2.7 2-6.5C12 13.3 14 12.7 14 16c0 1.1-.9 2-2 2z"/></svg></div><span>Fireplaces</span></div>
+      <div class="amenity-item hover-target"><div class="amenity-icon"><svg viewBox="0 0 24 24"><path d="M21 17v-1.1c0-.7-1.1-1.1-1.6-.7-.2.2-.5.5-.8.5-.6 0-1-.5-1.5-1.1-.4-.5-1.2-1.6-2.6-1.6-1.3 0-2.3 1.2-2.6 1.6-.4.5-1 1.1-1.5 1.1-.5 0-1.1-.5-1.5-1.1-.3-.4-1.3-1.6-2.6-1.6-1.5 0-2.2 1.1-2.6 1.6-.5.7-1 1.1-1.6 1.1-.2 0-.5-.3-.8-.5-.5-.4-1.6 0-1.6.7V17c0 2.2 1.8 4 4 4h12c2.2 0 4-1.8 4-4zM7 9v1c0 1.1.9 2 2 2 .9 0 1.4-1.4 2-2.3.4-.6 1.2-1.7 2.1-1.7 1 0 1.7 1 2.1 1.7.5.8 1.1 2.3 2 2.3 1.1 0 2-.9 2-2V9c0-1.7-1.3-3-3-3H9C7.3 6 6 7.3 6 9z"/></svg></div><span>Riverfront Hot Tub</span></div>
+      <div class="amenity-item hover-target"><div class="amenity-icon"><svg viewBox="0 0 24 24"><path d="M12 21c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9zm2.4-7c.22 0 .44-.09.6-.25l1.65-1.65c.33-.33.33-.87 0-1.21-.33-.33-.87-.33-1.21 0l-1.04 1.04v-5.43c0-.46-.38-.83-.83-.83-.46 0-.83.38-.83.83v5.42l-1.04-1.04c-.33-.33-.87-.33-1.21 0-.33.33-.33.87 0 1.21l1.65 1.65c.16.16.38.25.6.25z"/></svg></div><span>Private Chef Optional</span></div>
     </div>
   </div>
 </section>
@@ -620,24 +110,27 @@ body {
       <h2 class="section-title">Luxury Lodging, <em>Wild</em> Setting</h2>
     </div>
     <div class="accom-grid">
-      <div class="accom-card hover-target">
-        <img src="./images/image_5.jpg" alt="On River Time Lodge">
+      <div class="accom-card hover-target trigger-booking">
+        <img src="images/image_5.webp" loading="lazy" width="800" height="600" alt="On River Time Lodge">
+        <div class="accom-card-price">From $850/night</div>
         <div class="accom-card-content">
           <h3>On River Time Lodge</h3>
           <p>A warm lodge theme bringing the outdoors in. Gourmet kitchen, riverfront hot tub, fireplace, sauna. Sleeps 18 across multiple king suites.</p>
           <div class="accom-features"><span class="accom-feature">Sleeps 18</span><span class="accom-feature">River Views</span></div>
         </div>
       </div>
-      <div class="accom-card hover-target">
-        <img src="./images/image_6.jpg" alt="Buck's Bunk House">
+      <div class="accom-card hover-target trigger-booking">
+        <img src="images/image_6.webp" loading="lazy" width="800" height="600" alt="Buck's Bunk House">
+        <div class="accom-card-price">From $350/night</div>
         <div class="accom-card-content">
           <h3>Buck's Bunk House</h3>
           <p>Western-themed sleeping quarters providing a cozy atmosphere to rest between your Last Wild River adventures.</p>
           <div class="accom-features"><span class="accom-feature">Western Theme</span><span class="accom-feature">Group Friendly</span></div>
         </div>
       </div>
-      <div class="accom-card hover-target">
-        <img src="./images/image_7.jpg" alt="Wild River Saloon">
+      <div class="accom-card hover-target trigger-booking">
+        <img src="images/image_7.webp" loading="lazy" width="800" height="600" alt="Wild River Saloon">
+        <div class="accom-card-price">Venue & Gathering</div>
         <div class="accom-card-content">
           <h3>Wild River Saloon</h3>
           <p>The heart of resort socializing. A beautifully designed space for gathering, celebrating, and creating memories.</p>
@@ -656,32 +149,69 @@ body {
     <div class="gold-divider"></div>
     <div class="bento-grid">
       <div class="bento-item tall hover-target">
-        <img src="./images/image_8.jpg" alt="Kayaking">
+        <img src="images/image_8.webp" loading="lazy" width="800" height="600" alt="Kayaking">
         <div class="bento-content">
-          <span class="bento-label">On-Site</span>
-          <h4>Kayaking & Canoeing</h4>
+          <span class="bento-label">On-Site Rentals</span>
+          <h3>Kayaking & Canoeing</h3>
         </div>
       </div>
       <div class="bento-item large hover-target">
-        <img src="./images/image_9.jpg" alt="River">
+        <img src="images/image_9.webp" loading="lazy" width="800" height="600" alt="River">
         <div class="bento-content">
           <span class="bento-label">Glover River</span>
-          <h4>Swimming & Floating</h4>
+          <h3>Swimming & Floating</h3>
         </div>
       </div>
       <div class="bento-item hover-target">
-        <img src="./images/image_10.png" alt="Fishing">
+        <img src="images/image_10.webp" loading="lazy" width="400" height="400" alt="Fishing">
         <div class="bento-content">
           <span class="bento-label">The Fishin' Hole</span>
-          <h4>Bass Fishing</h4>
+          <h3>Bass Fishing</h3>
         </div>
       </div>
       <div class="bento-item wide hover-target">
-        <img src="./images/image_11.png" alt="Hiking">
+        <img src="images/image_11.webp" loading="lazy" width="800" height="400" alt="Hiking">
         <div class="bento-content">
-          <span class="bento-label">Five Named Trails</span>
-          <h4>Mountain Hiking</h4>
+          <span class="bento-label">Private Reserve</span>
+          <h3>Mountain Hiking</h3>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trails Map (Restored!) -->
+<section class="section trails">
+  <div class="container-wide">
+    <div class="trails-grid">
+      <div>
+        <span class="section-label">Chart Your Course</span>
+        <h2 class="section-title">Exclusive <em>Trails</em></h2>
+        <ul class="trail-list">
+          <li class="trail-item">
+            <span class="trail-name">Turkey Trot Trail</span>
+            <span class="trail-detail">Easy / 0.8 Miles</span>
+          </li>
+          <li class="trail-item">
+            <span class="trail-name">Sunrise Ridge</span>
+            <span class="trail-detail">Moderate / 1.5 Miles</span>
+          </li>
+          <li class="trail-item">
+            <span class="trail-name">Diamondback Pass</span>
+            <span class="trail-detail">Advanced / 2.2 Miles</span>
+          </li>
+          <li class="trail-item">
+            <span class="trail-name">River Bend Walk</span>
+            <span class="trail-detail">Easy / 1.0 Miles</span>
+          </li>
+          <li class="trail-item">
+            <span class="trail-name">Eagle's View</span>
+            <span class="trail-detail">Moderate / 1.8 Miles</span>
+          </li>
+        </ul>
+      </div>
+      <div class="trails-img-wrap hover-target" data-speed="0.95">
+        <img src="images/image_12.webp" loading="lazy" width="800" height="1066" alt="Trails Map">
       </div>
     </div>
   </div>
@@ -689,59 +219,77 @@ body {
 
 <!-- Venue -->
 <section class="section venue" id="venue">
-  <div class="venue-bg" data-speed="0.8"></div>
+  <div class="venue-bg" data-speed="0.8">
+    <img src="images/image_2.webp" loading="lazy" width="1600" height="1000" alt="Wedding Venue Background">
+  </div>
   <div class="container-wide venue-content">
     <span class="section-label">Destination Events</span>
     <h2 class="section-title">Your Dream <em>Venue</em></h2>
     <p class="section-text">Book your destination wedding, family reunion, or corporate retreat. The river as your backdrop and the mountains as your cathedral.</p>
     <div class="venue-features">
       <div class="venue-feature">
-        <h4>Weddings</h4>
-        <p>Fairytale forest ceremonies with Sunset Theater as your outdoor chapel.</p>
+        <h3>Sunset Theater</h3>
+        <p>Fairytale forest ceremonies in our handcrafted outdoor theater under the canopy.</p>
       </div>
       <div class="venue-feature">
-        <h4>Reunions</h4>
-        <p>164 acres of shared adventure for the whole family.</p>
-      </div>
-      <div class="venue-feature">
-        <h4>Retreats</h4>
-        <p>Disconnect from the world, reconnect with your team.</p>
-      </div>
-      <div class="venue-feature">
-        <h4>Celebrations</h4>
-        <p>Birthdays, anniversaries, and milestones worth remembering.</p>
+        <h3>Reunions & Retreats</h3>
+        <p>164 acres of shared adventure. Disconnect from the world and reconnect as a group.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Gallery Strip -->
-<div class="gallery-strip hover-target">
+<!-- Testimonials (Restored!) -->
+<section class="section testimonials">
+  <div class="container-wide">
+    <div class="testimonials-track">
+      <div class="testimonial-slide">
+        <p class="testimonial-quote">"164 acres of true privacy! The river is absolutely stunning and the lodge feels like stepping into a luxury cabin magazine. We will absolutely be back."</p>
+        <span class="testimonial-author">&ndash; Lenzy C. (2022)</span>
+      </div>
+      <div class="testimonial-slide">
+        <p class="testimonial-quote">"We hosted our family reunion here and it was flawless. Highly recommend utilizing the kayaks and hiring the private chef."</p>
+        <span class="testimonial-author">&ndash; Sarah T. (2024)</span>
+      </div>
+      <div class="testimonial-slide">
+        <p class="testimonial-quote">"The perfect blend of untamed wilderness and top-tier luxury amenities. The hot tub looking over the Glover River at sunset is surreal."</p>
+        <span class="testimonial-author">&ndash; Mark D. (2025)</span>
+      </div>
+    </div>
+    <div class="slider-dots">
+      <div class="slider-dot active"></div>
+      <div class="slider-dot"></div>
+      <div class="slider-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Gallery -->
+<div class="gallery-strip hover-target" title="Click to view full screen">
   <div class="gallery-strip-inner">
-    <img src="./images/image_14.jpg" alt="Gallery">
-    <img src="./images/image_15.jpg" alt="Gallery">
-    <img src="./images/image_16.jpg" alt="Gallery">
-    <img src="./images/image_17.jpg" alt="Gallery">
-    <img src="./images/image_18.jpg" alt="Gallery">
-    <img src="./images/image_19.jpg" alt="Gallery">
-    <img src="./images/image_20.jpg" alt="Gallery">
-    <img src="./images/image_14.jpg" alt="Gallery">
-    <img src="./images/image_15.jpg" alt="Gallery">
-    <img src="./images/image_16.jpg" alt="Gallery">
-    <img src="./images/image_17.jpg" alt="Gallery">
-    <img src="./images/image_18.jpg" alt="Gallery">
+    <!-- Lazy load gallery images, specific sizes if possible, fallback sizing in CSS -->
+    <img src="images/image_14.webp" loading="lazy" width="600" height="450" alt="Gallery">
+    <img src="images/image_15.webp" loading="lazy" width="600" height="450" alt="Gallery">
+    <img src="images/image_16.webp" loading="lazy" width="600" height="450" alt="Gallery">
+    <img src="images/image_17.webp" loading="lazy" width="600" height="450" alt="Gallery">
+    <img src="images/image_18.webp" loading="lazy" width="600" height="450" alt="Gallery">
+    <img src="images/image_19.webp" loading="lazy" width="600" height="450" alt="Gallery">
+    <img src="images/image_20.webp" loading="lazy" width="600" height="450" alt="Gallery">
+    <img src="images/image_14.webp" loading="lazy" width="600" height="450" alt="Gallery">
   </div>
 </div>
 
 <!-- CTA -->
 <section class="section cta-section" id="contact">
-  <div class="cta-bg" data-speed="0.8"></div>
+  <div class="cta-bg" data-speed="0.8">
+    <img src="images/image_3.webp" loading="lazy" width="1600" height="1000" alt="Booking CTA">
+  </div>
   <div class="cta-content container">
     <span class="section-label">Begin Your Story</span>
     <h2 class="section-title">Ready to <em>Escape?</em></h2>
     <div class="cta-actions">
       <a href="tel:5802124746" class="nav-cta hover-target">Call 580.212.4746</a>
-      <a href="mailto:bearmountainlodging@gmail.com" class="nav-cta hover-target" style="background: transparent; border: 1px solid var(--color-gold);">Send Message</a>
+      <a href="#" class="nav-cta trigger-booking hover-target" style="background: transparent; border: 1px solid var(--color-gold);">Check Dates</a>
     </div>
   </div>
 </section>
@@ -751,31 +299,31 @@ body {
   <div class="container-wide">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo"><img src="images/logo.png" alt="Last Wild River Resort"></div>
+        <div class="footer-logo"><img src="images/logo.png" alt="Last Wild River Resort" width="140" height="45"></div>
         <p class="footer-text">164 acres of pristine wilderness on Oklahoma's last wild river. Located near Broken Bow and Beavers Bend State Park in the Ouachita Mountains.</p>
       </div>
       <div>
-        <div class="footer-heading">Stay</div>
+        <h3 class="footer-heading">Stay</h3>
         <ul class="footer-links">
-          <li><a href="#" class="hover-target">On River Time Lodge</a></li>
-          <li><a href="#" class="hover-target">Buck's Bunk House</a></li>
-          <li><a href="#" class="hover-target">Wild River Saloon</a></li>
+          <li><a href="#accommodations" class="hover-target">On River Time Lodge</a></li>
+          <li><a href="#accommodations" class="hover-target">Buck's Bunk House</a></li>
+          <li><a href="#accommodations" class="hover-target">Wild River Saloon</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-heading">Experience</div>
+        <h3 class="footer-heading">Experience</h3>
         <ul class="footer-links">
-          <li><a href="#" class="hover-target">Activities</a></li>
-          <li><a href="#" class="hover-target">Event Venue</a></li>
-          <li><a href="#" class="hover-target">Trails Map</a></li>
+          <li><a href="#activities" class="hover-target">On-Site Activities</a></li>
+          <li><a href="#venue" class="hover-target">Event Venue</a></li>
+          <li><a href="#about" class="hover-target">Trails Map</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-heading">Connect</div>
+        <h3 class="footer-heading">Connect</h3>
         <ul class="footer-links">
           <li><a href="tel:5802124746" class="hover-target">580.212.4746</a></li>
-          <li><a href="mailto:bearmountainlodging@gmail.com" class="hover-target">Email Us</a></li>
-          <li><a href="#" class="hover-target">Instagram</a></li>
+          <li><a href="mailto:info@lastwildriver.com" class="hover-target">info@lastwildriver.com</a></li>
+          <li><a href="https://instagram.com/lastwildriver" target="_blank" class="hover-target">Instagram</a></li>
         </ul>
       </div>
     </div>
@@ -786,125 +334,19 @@ body {
   </div>
 </footer>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<!-- Lightbox Modal & Booking Modal injected via app.js -->
+<div class="booking-modal">
+  <div class="booking-content">
+    <button class="booking-close hover-target" aria-label="Close">&times;</button>
+    <h2>Check Availability</h2>
+    <p>Please contact our concierge team directly at <strong>info@lastwildriver.com</strong> or call <strong>580.212.4746</strong> to reserve your dates, as we tightly manage privacy and groups.</p>
+    <a href="mailto:info@lastwildriver.com" class="nav-cta hover-target">Email Request</a>
+  </div>
+</div>
 
-<script>
-// 1. Core Setups
-gsap.registerPlugin(ScrollTrigger);
-
-// Lenis Smooth Scroll
-const lenis = new Lenis({
-  duration: 1.2,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  direction: 'vertical',
-  gestureDirection: 'vertical',
-  smooth: true,
-  mouseMultiplier: 1,
-  smoothTouch: false,
-});
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
-// Custom Cursor
-const cursorDot = document.querySelector('.cursor-dot');
-const cursorOutline = document.querySelector('.cursor-outline');
-const hoverTargets = document.querySelectorAll('.hover-target');
-
-window.addEventListener('mousemove', (e) => {
-  gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1 });
-  gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.6, ease: "power2.out" });
-});
-
-hoverTargets.forEach(target => {
-  target.addEventListener('mouseenter', () => cursorOutline.classList.add('hovering'));
-  target.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovering'));
-});
-
-// 2. Preloader & Intro Animation
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('preloader').classList.add('hidden');
-    
-    // Hero Entrance Anim
-    const tl = gsap.timeline();
-    tl.fromTo('.hero-badge', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' })
-      .fromTo('.hero-title', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' }, '-=0.6')
-      .fromTo('.hero-sub', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=0.8')
-      .fromTo('.hero-scroll', { opacity: 0 }, { opacity: 1, duration: 1 }, '-=0.5');
-  }, 500);
-});
-
-// 3. Navigation Scroll State
-const nav = document.getElementById('nav');
-ScrollTrigger.create({
-  start: 'top -80',
-  onUpdate: self => {
-    if (self.direction === 1) {
-      nav.classList.add('scrolled');
-    } else if(self.progress === 0) {
-      nav.classList.remove('scrolled');
-    }
-  }
-});
-
-// 4. Parallax Elements
-gsap.utils.toArray('[data-speed]').forEach(el => {
-  const speed = el.getAttribute('data-speed');
-  gsap.to(el, {
-    y: (i, el) => (1 - parseFloat(speed)) * (ScrollTrigger.maxScroll(window) - (ScrollTrigger.maxScroll(window) / 2)),
-    ease: "none",
-    scrollTrigger: {
-      trigger: el,
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 0
-    }
-  });
-});
-
-// 5. Global Scroll Reveals
-gsap.utils.toArray('.section-title').forEach(title => {
-  gsap.fromTo(title, 
-    { opacity: 0, y: 50 }, 
-    { opacity: 1, y: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: title, start: "top 85%" } }
-  );
-});
-gsap.utils.toArray('.gold-divider').forEach(line => {
-  ScrollTrigger.create({
-    trigger: line,
-    start: "top 85%",
-    onEnter: () => line.style.width = "100px" // animate width instead of using class
-  });
-});
-gsap.utils.toArray('.section-text').forEach(text => {
-  gsap.fromTo(text, 
-    { opacity: 0, y: 30 }, 
-    { opacity: 1, y: 0, duration: 1, delay: 0.2, ease: 'power3.out', scrollTrigger: { trigger: text, start: "top 85%" } }
-  );
-});
-
-// Staggered triggers
-gsap.fromTo('.intro-stats div', 
-  { opacity: 0, y: 30 }, 
-  { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out', scrollTrigger: { trigger: '.intro-stats', start: "top 90%" } }
-);
-
-gsap.fromTo('.bento-item', 
-  { opacity: 0, y: 50 }, 
-  { opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: 'power3.out', scrollTrigger: { trigger: '.bento-grid', start: "top 80%" } }
-);
-
-gsap.fromTo('.venue-feature', 
-  { opacity: 0, y: 40 }, 
-  { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out', scrollTrigger: { trigger: '.venue-features', start: "top 85%" } }
-);
-</script>
+<div class="mobile-book-bar">
+    <a href="#" class="trigger-booking">Check Availability</a>
+</div>
 
 </body>
 </html>
