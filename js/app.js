@@ -16,26 +16,28 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// Custom Cursor (Desktop Only)
-if (window.innerWidth > 640) {
-  const cursorDot = document.querySelector('.cursor-dot');
-  const cursorOutline = document.querySelector('.cursor-outline');
-  const hoverTargets = document.querySelectorAll('.hover-target');
+// Mobile Menu
+const nav = document.getElementById('nav');
+const toggle = document.querySelector('.nav-toggle');
+const mobileLinks = document.querySelectorAll('.nav-link');
 
-  window.addEventListener('mousemove', (e) => {
-    gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1 });
-    gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.6, ease: "power2.out" });
-  });
-
-  hoverTargets.forEach(target => {
-    target.addEventListener('mouseenter', () => cursorOutline.classList.add('hovering'));
-    target.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovering'));
+if (toggle) {
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('menu-open');
+    if(nav.classList.contains('menu-open')) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
   });
 }
 
-// Mobile Menu
-const toggle = document.querySelector('.nav-toggle');
-// Basic toggle logic if needed, kept simple
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('menu-open');
+    lenis.start();
+  });
+});
 
 // 2. Preloader & Intro Animation
 window.addEventListener('load', () => {
@@ -52,7 +54,6 @@ window.addEventListener('load', () => {
 });
 
 // 3. Navigation Scroll State
-const nav = document.getElementById('nav');
 ScrollTrigger.create({
   start: 'top -80',
   onUpdate: self => {
