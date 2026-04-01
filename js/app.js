@@ -67,17 +67,23 @@ ScrollTrigger.create({
 
 // 4. Parallax Elements (Opacity & Transform only)
 gsap.utils.toArray('[data-speed]').forEach(el => {
-  const speed = el.getAttribute('data-speed');
-  gsap.to(el, {
-    y: (i, el) => (1 - parseFloat(speed)) * (ScrollTrigger.maxScroll(window) - (ScrollTrigger.maxScroll(window) / 2)),
-    ease: "none",
-    scrollTrigger: {
-      trigger: el,
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 0
+  const speed = el.getAttribute('data-speed'); // e.g. 0.9
+  // Use a percentage-based approach so the displacement scales with the element, never exceeding its boundaries.
+  const intensity = (1 - parseFloat(speed)) * 150; // 0.9 -> 0.1 * 150 = 15%
+  
+  gsap.fromTo(el, 
+    { yPercent: -intensity },
+    {
+      yPercent: intensity,
+      ease: "none",
+      scrollTrigger: {
+        trigger: el.parentElement,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
     }
-  });
+  );
 });
 
 // 5. Global Scroll Reveals (Opacity & Transform ONLY)
