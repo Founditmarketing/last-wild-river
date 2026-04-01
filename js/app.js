@@ -181,22 +181,93 @@ lightboxClose.addEventListener('click', () => {
     lenis.start();
 });
 
-// 8. Booking Modal Logic
-const bookingModal = document.querySelector('.booking-modal');
-const bookingTriggers = document.querySelectorAll('.trigger-booking');
-const bookingCloses = document.querySelectorAll('.booking-close');
+// 8. Booking Modal & Concierge Logic
+const modal = document.querySelector('.booking-modal');
+const triggers = document.querySelectorAll('.trigger-booking');
+const closeBtn = document.querySelector('.booking-close');
 
-bookingTriggers.forEach(btn => {
+if(modal && triggers && closeBtn) {
+  triggers.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        bookingModal.classList.add('open');
-        lenis.stop();
+      e.preventDefault();
+      modal.classList.add('active');
+      lenis.stop();
     });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+    lenis.start();
+    // Reset to step 1
+    setTimeout(() => switchStep('1'), 400); 
+  });
+}
+
+// Step form logic
+const nextBtns = document.querySelectorAll('.c-next');
+const backBtns = document.querySelectorAll('.c-back');
+const steps = document.querySelectorAll('.concierge-step');
+
+function switchStep(targetId) {
+  steps.forEach(step => {
+    step.classList.add('hidden');
+    step.classList.remove('active');
+  });
+  const target = document.getElementById('c-step-' + targetId);
+  if(target) {
+    target.classList.remove('hidden');
+    // slight delay for CSS animation
+    setTimeout(() => target.classList.add('active'), 10);
+  }
+}
+
+nextBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const nextId = btn.getAttribute('data-next');
+    switchStep(nextId);
+  });
 });
 
-bookingCloses.forEach(btn => {
-    btn.addEventListener('click', () => {
-        bookingModal.classList.remove('open');
-        lenis.start();
-    });
+backBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const backId = btn.getAttribute('data-back');
+    switchStep(backId);
+  });
+});
+
+// 9. Interactive Trails Logic
+const trailItems = document.querySelectorAll('.trail-item.interactable');
+const trailsData = [
+  { title: "Turkey Trot Trail", diff: "Easy", len: "0.8 Miles", elev: "120ft Elev", desc: "A gentle, winding path perfect for morning strolls. Follows the eastern ridge with beautiful viewpoints of the property." },
+  { title: "Sunrise Ridge", diff: "Moderate", len: "1.5 Miles", elev: "340ft Elev", desc: "A steady incline offering the most spectacular sunrise views over the Ouachita valley. Excellent for photography." },
+  { title: "Diamondback Pass", diff: "Advanced", len: "2.2 Miles", elev: "680ft Elev", desc: "For the adventurous. Steep, rocky ascents leading to deep forest canopies. Proper footwear required." },
+  { title: "River Bend Walk", diff: "Easy", len: "1.0 Miles", elev: "40ft Elev", desc: "Flat, relaxing walk hugging the Glover River shoreline. Best enjoyed at sunset or for a casual afternoon stroll." },
+  { title: "Eagle's View", diff: "Moderate", len: "1.8 Miles", elev: "450ft Elev", desc: "Climbs to the highest point overlooking the entire 164 acres. Features a panoramic clearing that is truly unforgettable." }
+];
+
+trailItems.forEach(item => {
+  item.addEventListener('click', () => {
+    // Remove active state
+    trailItems.forEach(t => t.classList.remove('active'));
+    item.classList.add('active');
+    
+    const id = item.getAttribute('data-id');
+    const data = trailsData[id];
+    
+    // Animate content swap
+    const card = document.querySelector('.trail-info-card');
+    if(card) {
+      card.style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('ti-title').innerText = data.title;
+        document.getElementById('ti-diff').innerText = data.diff;
+        document.getElementById('ti-len').innerText = data.len;
+        document.getElementById('ti-elev').innerText = data.elev;
+        document.getElementById('ti-desc').innerText = data.desc;
+        card.style.opacity = '1';
+      }, 300);
+    }
+  });
 });

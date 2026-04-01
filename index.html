@@ -69,6 +69,20 @@
   </div>
 </section>
 
+<!-- The Story / Narrative Section -->
+<section class="section narrative" id="story">
+  <div class="container">
+    <div class="narrative-content">
+      <span class="section-label">Our Heritage</span>
+      <h2 class="narrative-headline section-title">Oklahoma's Last Undammed, <em>Free-Flowing</em> River.</h2>
+      <div class="gold-divider center"></div>
+      <p class="narrative-body section-text">
+        The Glover River is an ecological masterpiece. Untouched by man-made dams, it carves its way through the Ouachita Mountains exactly as it has for thousands of years. Last Wild River Resort was thoughtfully founded to not only provide uncompromised luxury, but to grant exclusive, entirely private access to this vanishing wilderness. Here, you aren't just standing in a forest—you are stepping into a living sanctuary.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- Into / About -->
 <section class="section intro" id="about">
   <div class="container container-wide">
@@ -148,6 +162,37 @@
   </div>
 </section>
 
+<!-- Curated Itineraries -->
+<section class="section itineraries">
+  <div class="container">
+    <div style="text-align: center;">
+      <span class="section-label">A Day at the River</span>
+      <h2 class="section-title">Curated <em>Experiences</em></h2>
+      <div class="gold-divider" style="margin: 2rem auto;"></div>
+    </div>
+    <div class="itin-grid mt-4">
+      <div class="itin-card">
+        <h3>The Romantic's Day</h3>
+        <ul class="itin-timeline">
+           <li><strong>8:00 AM:</strong> Coffee on the lodge deck overlooking the mist.</li>
+           <li><strong>10:30 AM:</strong> A serene tandem kayak float down the Glover River.</li>
+           <li><strong>3:00 PM:</strong> Couples massage in the private lodge sanctuary.</li>
+           <li><strong>7:30 PM:</strong> Private chef dinner by the riverfront firepit.</li>
+        </ul>
+      </div>
+      <div class="itin-card">
+        <h3>The Explorer's Path</h3>
+        <ul class="itin-timeline">
+           <li><strong>6:30 AM:</strong> Sunrise hike up Eagle's View Trail.</li>
+           <li><strong>9:00 AM:</strong> Fuel up with a hearty Western breakfast at Buck's.</li>
+           <li><strong>11:00 AM:</strong> Try your hand at native bass fishing in the river holes.</li>
+           <li><strong>4:00 PM:</strong> Cool down swimming in the natural rock pools.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Bento Grid Activities -->
 <section class="section activities" id="activities">
   <div class="container-wide">
@@ -194,31 +239,38 @@
       <div>
         <span class="section-label">Chart Your Course</span>
         <h2 class="section-title">Exclusive <em>Trails</em></h2>
-        <ul class="trail-list">
-          <li class="trail-item">
+        <ul class="trail-list" id="trail-list">
+          <li class="trail-item interactable active" data-id="0">
             <span class="trail-name">Turkey Trot Trail</span>
             <span class="trail-detail">Easy / 0.8 Miles</span>
           </li>
-          <li class="trail-item">
+          <li class="trail-item interactable" data-id="1">
             <span class="trail-name">Sunrise Ridge</span>
             <span class="trail-detail">Moderate / 1.5 Miles</span>
           </li>
-          <li class="trail-item">
+          <li class="trail-item interactable" data-id="2">
             <span class="trail-name">Diamondback Pass</span>
             <span class="trail-detail">Advanced / 2.2 Miles</span>
           </li>
-          <li class="trail-item">
+          <li class="trail-item interactable" data-id="3">
             <span class="trail-name">River Bend Walk</span>
             <span class="trail-detail">Easy / 1.0 Miles</span>
           </li>
-          <li class="trail-item">
+          <li class="trail-item interactable" data-id="4">
             <span class="trail-name">Eagle's View</span>
             <span class="trail-detail">Moderate / 1.8 Miles</span>
           </li>
         </ul>
       </div>
-      <div class="trails-img-wrap hover-target" data-speed="0.95">
-        <img src="images/image_12.webp" loading="lazy" width="800" height="1066" alt="Trails Map">
+      <div class="trails-interactive-panel hover-target">
+        <div class="trail-map-visual">
+          <img src="images/image_12.webp" loading="lazy" width="800" height="1066" alt="Trails Map">
+        </div>
+        <div class="trail-info-card">
+           <h3 id="ti-title">Turkey Trot Trail</h3>
+           <div class="ti-stats"><span id="ti-diff">Easy</span> &bull; <span id="ti-len">0.8 Miles</span> &bull; <span id="ti-elev">120ft Elev</span></div>
+           <p id="ti-desc">A gentle, winding path perfect for morning strolls. Follows the eastern ridge with beautiful viewpoints of the property.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -242,6 +294,19 @@
         <h3>Reunions & Retreats</h3>
         <p>164 acres of shared adventure. Disconnect from the world and reconnect as a group.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Press Bar -->
+<section class="press-bar">
+  <div class="container-wide">
+    <p class="press-label">As Featured In</p>
+    <div class="press-logos">
+      <span class="pd">Travel + Leisure</span>
+      <span class="pd">Southern Living</span>
+      <span class="pd">Oklahoma Magazine</span>
+      <span class="pd">The Pioneer Woman</span>
     </div>
   </div>
 </section>
@@ -341,13 +406,52 @@
   </div>
 </footer>
 
-<!-- Lightbox Modal & Booking Modal injected via app.js -->
+<!-- Lightbox Modal & Concierge Multi-Step Booking Modal injected via app.js -->
 <div class="booking-modal">
-  <div class="booking-content">
+  <div class="booking-content concierge-wrap">
     <button class="booking-close hover-target" aria-label="Close">&times;</button>
-    <h2>Check Availability</h2>
-    <p>Please contact our concierge team directly at <strong>info@lastwildriver.com</strong> or call <strong>580.212.4746</strong> to reserve your dates, as we tightly manage privacy and groups.</p>
-    <a href="mailto:info@lastwildriver.com" class="nav-cta hover-target">Email Request</a>
+    
+    <!-- Step 1 -->
+    <div class="concierge-step active" id="c-step-1">
+      <span class="c-step-badge">Step 1 of 3</span>
+      <h2>Your <em>Dates</em></h2>
+      <p>When would you like to escape to the wild?</p>
+      <input type="text" placeholder="Approximate Dates (e.g. October 12-15)" class="c-input">
+      <input type="number" placeholder="Number of Guests" class="c-input" min="1" max="18">
+      <button class="nav-cta c-next" data-next="2">Next Step</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="concierge-step hidden" id="c-step-2">
+      <span class="c-step-badge">Step 2 of 3</span>
+      <h2>The <em>Experience</em></h2>
+      <p>What brings you to the Last Wild River?</p>
+      <select class="c-input c-select">
+         <option>Romantic Getaway</option>
+         <option>Family Retreat</option>
+         <option>Corporate Offsite</option>
+         <option>Destination Wedding</option>
+         <option>Hunting / Fishing Trip</option>
+      </select>
+      <div class="c-back-row">
+        <button class="c-back" data-back="1">Back</button>
+        <button class="nav-cta c-next" data-next="3">Next Step</button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="concierge-step hidden" id="c-step-3">
+      <span class="c-step-badge">Step 3 of 3</span>
+      <h2>Your <em>Details</em></h2>
+      <p>How shall our concierge address you?</p>
+      <input type="text" placeholder="Full Name" class="c-input" id="c-name">
+      <input type="email" placeholder="Email Address" class="c-input">
+      <div class="c-back-row">
+        <button class="c-back" data-back="2">Back</button>
+        <button class="nav-cta c-submit" onclick="window.location.href='mailto:info@lastwildriver.com?subject=Concierge Inquiry: ' + document.getElementById('c-name').value">Request Dates</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
