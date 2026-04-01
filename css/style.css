@@ -104,24 +104,32 @@ body {
 .section-text { font-size: 1.1rem; font-weight: 300; line-height: 1.8; color: var(--color-text-muted); max-width: 650px; }
 .gold-divider { width: 100px; height: 1px; background: var(--color-gold); margin: 2.5rem 0; opacity: 0; } /* Animating opacity & transform now, not width */
 
-/* ====== HERO ====== */
-.hero { position: relative; height: 100svh; min-height: 700px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.hero-bg-container { position: absolute; inset: 0; width: 100%; height: 120%; top: -10%; }
-.hero-video { width: 100%; height: 100%; object-fit: cover; object-position: center center; filter: brightness(0.65) contrast(1.1); }
-.hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(7,9,8,0.2) 0%, rgba(7,9,8,0.8) 100%); }
-.hero-content { position: relative; z-index: 2; text-align: center; max-width: 1000px; padding: 0 2rem; margin-top: 5vh; }
-.hero-badge { display: inline-block; font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--color-gold); padding: 0.8rem 2.5rem; border: 1px solid rgba(212, 175, 55, 0.3); margin-bottom: 2.5rem; backdrop-filter: blur(5px); }
-.hero h1 { font-family: var(--font-display); font-size: clamp(4rem, 10vw, 8.5rem); font-weight: 300; line-height: 0.95; letter-spacing: -0.02em; color: var(--color-cream); margin-bottom: 2rem; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.hero h1 .line { overflow: hidden; display: block; }
-.hero h1 .word { display: inline-block; transform: translateY(110%); }
-.hero-sub { font-size: 1.1rem; font-weight: 300; line-height: 1.8; color: var(--color-cream-soft); max-width: 600px; margin: 0 auto 3rem; opacity: 0; }
-.hero-scroll { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 1rem; opacity: 0; }
-.scroll-line { width: 1px; height: 60px; background: rgba(255,255,255,0.2); position: relative; overflow: hidden; }
-.scroll-line::before { content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 100%; background: var(--color-gold); animation: scrollDown 2s cubic-bezier(0.77, 0, 0.175, 1) infinite; }
 @keyframes scrollDown { 0% { top: -100%; } 50% { top: 0; } 100% { top: 100%; } }
 
+/* ====== WORLD CLASS HERO ====== */
+.hero { position: relative; height: 100svh; min-height: 700px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; padding-bottom: 12vh; border-bottom: 1px solid var(--glass-border); }
+.hero-bg-container { position: absolute; inset: 0; width: 100%; height: 120%; top: -10%; z-index: 1; overflow: hidden; }
+.hero-video { width: 100%; height: 100%; object-fit: cover; object-position: center center; filter: brightness(0.7) contrast(1.15); animation: kenBurns 25s infinite alternate ease-in-out; }
+@keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.08); } }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,9,8,1) 0%, rgba(7,9,8,0.4) 40%, rgba(7,9,8,0.1) 100%); z-index: 2; }
+
+.hero-content { position: relative; z-index: 3; width: 100%; max-width: 1400px; padding: 0 4rem; display: flex; justify-content: space-between; align-items: flex-end; }
+.hero-text-block { max-width: 700px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 1rem; font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-gold); margin-bottom: 1.5rem; }
+.hero-badge::before { content: ''; display: block; width: 40px; height: 1px; background: var(--color-gold); }
+.hero-title { font-family: var(--font-display); color: var(--color-cream); font-size: 6.5rem; line-height: 0.95; font-weight: 300; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+.hero-title em { font-style: italic; color: var(--color-gold); display: block; padding-left: 10%; }
+.hero-sub { color: var(--color-text-muted); font-size: 1.15rem; line-height: 1.6; max-width: 500px; font-weight: 300; }
+
+.hero-widget { display: flex; flex-direction: column; gap: 2rem; align-items: flex-end; }
+.hero-weather { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-cream); display: flex; align-items: center; gap: 0.5rem; }
+.scroll-indicator { display: flex; align-items: center; gap: 1rem; font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.3em; color: var(--color-text-muted); text-transform: uppercase;}
+.scroll-line-h { width: 60px; height: 1px; background: rgba(212,175,55,0.4); position: relative; overflow: hidden; }
+.scroll-line-h::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-gold); animation: scrollLineH 2s infinite cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes scrollLineH { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
 /* ====== INTRO ====== */
-.intro { background: var(--color-bg); }
+.intro { background: var(--color-bg); padding-top: 8rem; }
 .intro-grid { display: grid; grid-template-columns: 5fr 6fr; gap: 8rem; align-items: center; }
 .intro-img-wrap { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 2px; }
 .intro-img-wrap img { width: 100%; height: 120%; top: -10%; position: absolute; object-fit: cover; filter: sepia(0.2) contrast(1.1); }
@@ -281,6 +289,14 @@ body {
 @media (max-width: 640px) {
   .section { padding: 6rem 1.5rem; }
   .hero h1 { font-size: 3.5rem; }
+  /* Mobile Hero Overhaul adjustments */
+  .hero { align-items: center; padding-bottom: 8vh; }
+  .hero-content { flex-direction: column; align-items: flex-start; padding: 0 1.5rem; gap: 4rem; margin-top: 8vh; }
+  .hero-title { font-size: 3.8rem; line-height: 1; }
+  .hero-title em { padding-left: 1rem; }
+  .hero-widget { align-items: flex-start; flex-direction: row-reverse; justify-content: space-between; width: 100%; gap: 1rem; }
+  .scroll-line-h { width: 40px; }
+
   .bento-grid { grid-template-columns: 1fr; }
   .bento-item { grid-column: span 1 !important; grid-row: span 1 !important; }
   .footer-grid { grid-template-columns: 1fr; }
